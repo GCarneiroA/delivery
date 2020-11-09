@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.18)
 
-project(delivery VERSION 0.1)
+project(delivery VERSION 0.0.1)
 
 add_subdirectory(dependencies)
 add_subdirectory(cmake)

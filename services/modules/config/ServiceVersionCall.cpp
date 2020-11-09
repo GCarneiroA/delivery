@@ -1,5 +1,6 @@
 
 #include "ServiceVersionCall.hpp"
+#include <deliveryVersion.h>
 
 namespace delivery
 {
@@ -22,9 +23,9 @@ namespace delivery
             } else if (m_status == PROCESS) {
                 new VersionCall(m_service, m_queue);
 
-                m_response.set_major(0);
-                m_response.set_minor(0);
-                m_response.set_patch(1);
+                m_response.set_major(VERSION_MAJOR);
+                m_response.set_minor(VERSION_MINOR);
+                m_response.set_patch(VERSION_PATCH);
                 m_response.set_status(VersionResponse_Status_VERSION_COMPATIBLE);
 
                 m_status = FINISH;

@@ -1,0 +1,4 @@
+
+#define VERSION_MAJOR @delivery_VERSION_MAJOR@
+#define VERSION_MINOR @delivery_VERSION_MINOR@
+#define VERSION_PATCH @delivery_VERSION_PATCH@

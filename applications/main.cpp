@@ -3,6 +3,8 @@
 #include <memory>
 #include <string>
 
+#include <deliveryVersion.h>
+
 #include <grpcpp/grpcpp.h>
 
 #include <Signature.grpc.pb.h>
@@ -39,9 +41,9 @@ public:
     VersionResponse_Status Version(int major, int minor, int patch)
     {
         VersionRequest vRequest;
-        vRequest.set_major(0);
-        vRequest.set_minor(0);
-        vRequest.set_patch(1);
+        vRequest.set_major(VERSION_MAJOR);
+        vRequest.set_minor(VERSION_MINOR);
+        vRequest.set_patch(VERSION_PATCH);
 
         VersionResponse vResponse;
         grpc::ClientContext context;

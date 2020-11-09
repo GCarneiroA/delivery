@@ -58,3 +58,5 @@ function(GRPC_GENERATE_CPP SRCS HDRS)
     set(${HDRS} ${${HDRS}} PARENT_SCOPE)
 endfunction()
 
+# Version configuration file
+configure_file(deliveryVersion.h.in deliveryVersion.h)

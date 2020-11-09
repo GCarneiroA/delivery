@@ -11,4 +11,7 @@ file(GLOB_RECURSE ProtoFiles "${PROJECT_SOURCE_DIR}/protos/config/*.proto")
 add_library(serviceConfigModules ${ServiceConfigModules_SRCs} ${ProtobufSources} ${ProtobufGRPCSources})
 target_link_libraries(serviceConfigModules grpc++ grpc++_reflection)
 
-target_include_directories(serviceConfigModules PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(serviceConfigModules PUBLIC
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${PROJECT_BINARY_DIR}/cmake)
+
