@@ -1,0 +1,29 @@
+
+syntax = "proto3";
+
+package delivery.version;
+
+service DeliveryVersion {
+    rpc Version(VersionRequest) returns(VersionResponse);
+}
+
+message VersionRequest {
+    fixed32 major = 1;                              // added new features
+    fixed32 minor = 2;                              // API changed version
+    fixed32 patch = 3;                               // bug fixes
+}
+
+message VersionResponse {
+    fixed32 major = 1;                  // added new features
+    fixed32 minor = 2;                  // API changed version
+    fixed32 patch = 3;                   // bug fixes    
+    bool version_compatibility = 4;     // the client version is compatible ?
+    enum Status {
+        VERSION_VALID = 0;
+        VERSION_COMPATIBLE = 1;
+        VERSION_PATCH_CHANGED = 2;
+        VERSION_INCOMPATIBLE = 3;
+        RPC_FAILED = 4;
+    }
+    Status status = 5;
+}

@@ -1,0 +1,16 @@
+
+syntax = "proto3";
+
+package delivery.signature;
+
+service DeliverySignature {
+    rpc Signature(SignatureRequest) returns(SignatureResponse);
+}
+
+message SignatureRequest {
+    string signature = 1;
+}
+
+message SignatureResponse {
+    bool SignatureValid = 1;
+}
