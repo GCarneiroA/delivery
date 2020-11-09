@@ -9,6 +9,5 @@ add_subdirectory(cmake)
 
 find_package(Protobuf)
 
-add_subdirectory(include)
 add_subdirectory(services)
 add_subdirectory(examples)
