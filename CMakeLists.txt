@@ -11,6 +11,4 @@ find_package(Protobuf)
 
 add_subdirectory(include)
 add_subdirectory(services)
-add_subdirectory(applications)
-
-
+add_subdirectory(examples)
