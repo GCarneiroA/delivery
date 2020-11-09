@@ -6,10 +6,12 @@
 
 #include "serviceConfig/ServiceSignatureCall.hpp"
 #include "serviceConfig/ServiceVersionCall.hpp"
+#include "serviceConfig/ServiceLoginCall.hpp"
 
 using namespace delivery;
 using namespace signature;
 using namespace version;
+using namespace login;
 
 class ServerImpl final
 {
@@ -17,7 +19,7 @@ public:
     ~ServerImpl()
     {
         m_server->Shutdown();
-        for (int index = 0; index < 2; index++) {
+        for (int index = 0; index < 3; index++) {
             m_cq[index]->Shutdown();
         }
     }
@@ -30,8 +32,9 @@ public:
 
         builder.RegisterService(&m_signatureService);
         builder.RegisterService(&m_versionService);
+        builder.RegisterService(&m_loginService);
 
-        for (int index = 0; index < 2; index++) {
+        for (int index = 0; index < 3; index++) {
             m_cq.push_back(builder.AddCompletionQueue());
         }
 
@@ -40,14 +43,17 @@ public:
 
         std::thread handle_signature(handleSignature, &m_signatureService, &m_cq[0]);
         std::thread handle_version(handleVersion, &m_versionService, &m_cq[1]);
+        std::thread handle_login(handleLogin, &m_loginService, &m_cq[2]);
 
         handle_signature.join();
         handle_version.join();
+        handle_login.join();
     }
 
 private:
     DeliverySignature::AsyncService m_signatureService;
     DeliveryVersion::AsyncService m_versionService;
+    DeliveryLogin::AsyncService m_loginService;
 
     std::vector<std::unique_ptr<grpc::ServerCompletionQueue>> m_cq;
 

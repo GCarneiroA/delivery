@@ -2,6 +2,7 @@
 set(ServiceConfigModules_SRCs
     ServiceSignatureCall.cpp
     ServiceVersionCall.cpp
+    ServiceLoginCall.cpp
 )
 
 file(GLOB_RECURSE ProtoFiles "${PROJECT_SOURCE_DIR}/protos/config/*.proto")
