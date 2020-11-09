@@ -1,5 +1,5 @@
 
-add_subdirectory(serviceConfig)
+add_subdirectory(serviceConnect)
 
-add_executable(serviceConfig serviceConfig.cpp)
-target_link_libraries(serviceConfig serviceConfigModules)
+add_executable(serviceConnect serviceConnect.cpp)
+target_link_libraries(serviceConnect serviceConnectModules)

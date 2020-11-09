@@ -4,9 +4,9 @@
 #include <grpcpp/grpcpp.h>
 #include <grpc/support/log.h>
 
-#include "serviceConfig/ServiceSignatureCall.hpp"
-#include "serviceConfig/ServiceVersionCall.hpp"
-#include "serviceConfig/ServiceLoginCall.hpp"
+#include "serviceConnect/ServiceSignatureCall.hpp"
+#include "serviceConnect/ServiceVersionCall.hpp"
+#include "serviceConnect/ServiceLoginCall.hpp"
 
 using namespace delivery;
 using namespace signature;
