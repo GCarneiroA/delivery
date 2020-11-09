@@ -12,3 +12,8 @@ else()
     add_subdirectory(gRPC)
 endif()
 
+FetchContent_Declare(mysqlpp
+    GIT_REPOSITORY  https://github.com/GCarneiroA/mysql-connector.git
+    GIT_TAG         origin/master
+)
+add_subdirectory(mysqlpp)
