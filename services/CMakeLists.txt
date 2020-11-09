@@ -1,5 +1,5 @@
 
 add_subdirectory(modules)
 
-add_executable(serviceConfig main.cpp)
+add_executable(serviceConfig serviceConfig.cpp)
 target_link_libraries(serviceConfig serviceConfigModules)
