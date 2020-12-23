@@ -15,10 +15,9 @@ LoginWrapper::LoginWrapper(QQmlApplicationEngine *engine, QObject *parent)
 void LoginWrapper::login(const QString &username, const QString &password) 
 {
     bool logged = false;
-    LoginResponse_Status loginStatus;
 
-    std::string token = ClientConnection::instance()->login(username.toStdString(), password.toStdString(), loginStatus);
-    if (loginStatus == LoginResponse_Status_LOGGED && token != "") {
+    std::string token = ClientConnection::instance()->login(username.toStdString(), password.toStdString());
+    if (!token.empty()) {
         logged = true;
     }
 

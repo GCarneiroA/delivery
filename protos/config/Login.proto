@@ -14,10 +14,4 @@ message LoginRequest {
 
 message LoginResponse {
     string token = 1;
-    enum Status {
-        LOGGED = 0;
-        INVALID = 1;
-        ERROR = 2;
-    }
-    Status status = 2;
 }

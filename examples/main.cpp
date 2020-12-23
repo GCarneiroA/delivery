@@ -63,7 +63,7 @@ public:
         }
     }
 
-    std::string Login(const std::string &username, const std::string &password, LoginResponse_Status &loginStatus)
+    std::string Login(const std::string &username, const std::string &password)
     {
         LoginRequest lRequest;
 
@@ -78,7 +78,6 @@ public:
         grpc::ClientContext context;
 
         grpc::Status status = m_stubLogin->Login(&context, lRequest, &lResponse);
-        loginStatus = lResponse.status();
         if (status.ok()) {
             return lResponse.token();
         } else {
@@ -136,9 +135,8 @@ int main(int argc, char **argv)
         }
     }
 
-    LoginResponse_Status loginStatus;
-    std::string token = sClient.Login("gustavo", "der555", loginStatus);
-    if (loginStatus == LoginResponse_Status_LOGGED || token != "") {
+    std::string token = sClient.Login("gustavo", "der555");
+    if (!token.empty()) {
         std::cout << "Token is: " << token << std::endl;
         std::cout << "LOGGED IN" << std::endl;
     } else {

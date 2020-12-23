@@ -23,7 +23,7 @@ public:
     
     bool signatureValid(const std::string &signature);
     VersionResponse_Status versionValid(int major, int minor, int patch);
-    std::string login(const std::string &username, const std::string &password, LoginResponse_Status loginStatus);
+    std::string login(const std::string &username, const std::string &password);
 
 private:
     std::unique_ptr<DeliverySignature::Stub> m_stubSignature;

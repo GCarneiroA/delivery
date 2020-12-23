@@ -47,7 +47,7 @@ VersionResponse_Status ClientConnection::versionValid(int major, int minor, int 
     return status.ok() ? vResponse.status() : VersionResponse_Status_RPC_FAILED;
 }
 
-std::string ClientConnection::login(const std::string &username, const std::string &password, LoginResponse_Status loginStatus)
+std::string ClientConnection::login(const std::string &username, const std::string &password)
 {
     LoginRequest lRequest;
     lRequest.set_username(username);
@@ -57,6 +57,5 @@ std::string ClientConnection::login(const std::string &username, const std::stri
     grpc::ClientContext context;
 
     grpc::Status status = m_stubLogin->Login(&context, lRequest, &lResponse);
-    loginStatus = lResponse.status();
     return status.ok() ? lResponse.token() : std::string();
 }

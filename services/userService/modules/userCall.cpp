@@ -40,10 +40,8 @@ namespace delivery
                 if (login) {
                     // TODO: generate and register token in database
                     m_response.set_token("mytoken");
-                    m_response.set_status(LoginResponse_Status_LOGGED);
                 } else {
                     m_response.set_token("");
-                    m_response.set_status(LoginResponse_Status_INVALID);
                 }
 
                 m_status = FINISH;
