@@ -1,4 +1,5 @@
 
+add_subdirectory(userService)
 add_subdirectory(serviceConnect)
 
 add_executable(serviceConnect)

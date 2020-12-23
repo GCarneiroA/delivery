@@ -57,3 +57,47 @@ function(GRPC_GENERATE_CPP SRCS HDRS)
     set(${SRCS} ${${SRCS}} PARENT_SCOPE)
     set(${HDRS} ${${HDRS}} PARENT_SCOPE)
 endfunction()
+
+find_program(DDL2CPP sqlpp11-ddl2cpp)
+
+function(SQLPP_GENERATE_TABLE HDRS space)
+    if(NOT ARGN)
+        message(SEND_ERROR "Error: SQLPP_GENERATE_TABLE() called without any ddl files")
+        return()
+    endif()
+
+    foreach(FIL ${ARGN})
+        get_filename_component(ABS_FIL ${FIL} ABSOLUTE)
+        get_filename_component(ABS_PATH ${ABS_FIL} PATH)
+
+        list(FIND ddl2cpp_include_path ${ABS_PATH} _contains_already)
+        if(${_contains_already} EQUAL -1)
+            list(APPEND ddl2cpp_include_path ${ABS_PATH})
+        endif()
+    endforeach()
+
+    set(${HDRS})
+
+    foreach(FIL ${ARGN})
+        get_filename_component(ABS_FIL ${FIL} ABSOLUTE)
+        get_filename_component(FIL_WE ${FIL} NAME_WE)
+
+        list(APPEND ${HDRS} "${CMAKE_CURRENT_BINARY_DIR}/${FIL_WE}Table")
+
+        add_custom_command(
+            OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${FIL_WE}Table"
+            COMMAND ${DDL2CPP}
+            ARGS
+                ${ABS_FIL}
+                "${CMAKE_CURRENT_BINARY_DIR}/${FIL_WE}Table"
+                ${space}
+            DEPENDS
+                ${DDL2CPP}
+                ${ABS_FIL}
+            COMMENT "Runing ddl2cpp compiler on ${FIL}"
+        )
+    endforeach()
+
+    set_source_files_properties(${HDRS} PROPERTIES GENERATED TRUE)
+    set(${HDRS} ${${HDRS}} PARENT_SCOPE)
+endfunction()
