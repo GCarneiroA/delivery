@@ -10,7 +10,7 @@ file(GLOB_RECURSE ProtoFiles "${PROJECT_SOURCE_DIR}/protos/config/*.proto")
     grpc_generate_cpp(ProtobufGRPCSources ProtobufGRPCHeaders ${ProtoFiles})
 
 add_library(serviceConnectModules ${ServiceConnectModules_SRCs} ${ProtobufSources} ${ProtobufGRPCSources})
-target_link_libraries(serviceConnectModules grpc++ grpc++_reflection)
+target_link_libraries(serviceConnectModules gRPC::grpc++ gRPC::grpc++_reflection)
 
 target_include_directories(serviceConnectModules PUBLIC
     ${CMAKE_CURRENT_BINARY_DIR}
