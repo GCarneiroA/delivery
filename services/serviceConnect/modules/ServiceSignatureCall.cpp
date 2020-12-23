@@ -22,7 +22,7 @@ namespace delivery
             } else if (m_status == PROCESS) {
                 new SignatureCall(m_service, m_queue);
 
-                const std::string sSignature("sig12xss92383");
+                const std::string sSignature("c86b4828-0f0a-4396-99c4-60dd161723ef");
                 m_response.set_signaturevalid(sSignature == m_request.signature());
                 
                 m_status = FINISH;

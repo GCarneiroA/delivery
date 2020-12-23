@@ -98,7 +98,7 @@ int main(int argc, char **argv)
     std::string target_str("localhost:50051");
     Client sClient(grpc::CreateChannel(target_str, grpc::InsecureChannelCredentials()));
 
-    std::string sSignature("sig12xss92383");
+    std::string sSignature("c86b4828-0f0a-4396-99c4-60dd161723ef");
     bool sValid = sClient.SignatureValid(sSignature);
     if (sValid) {
         std::cout << "Signature is valid!" << std::endl;
