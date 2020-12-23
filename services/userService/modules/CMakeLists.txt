@@ -11,6 +11,7 @@ grpc_generate_cpp(userProtoGRPCSources userProtoGRPCHeaders ${userProtoFiles})
 add_library(userServiceModules)
 target_link_libraries(userServiceModules gRPC::grpc++ gRPC::grpc++_reflection sqlpp11::mysql)
 target_sources(userServiceModules PRIVATE
+    user.cpp
     userCall.cpp
     ${tableHeaders}
     ${userProtoSources}
@@ -18,5 +19,6 @@ target_sources(userServiceModules PRIVATE
 )
 target_include_directories(userServiceModules PUBLIC
     ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
     ${PROJECT_BINARY_DIR})
 

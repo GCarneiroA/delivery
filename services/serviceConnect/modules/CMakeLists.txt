@@ -4,7 +4,7 @@ file(GLOB_RECURSE ProtoFiles "${PROJECT_SOURCE_DIR}/protos/config/*.proto")
     grpc_generate_cpp(ProtobufGRPCSources ProtobufGRPCHeaders ${ProtoFiles})
 
 add_library(serviceConnectModules)
-target_link_libraries(serviceConnectModules gRPC::grpc++ gRPC::grpc++_reflection)
+target_link_libraries(serviceConnectModules gRPC::grpc++ gRPC::grpc++_reflection userServiceModules)
 target_sources(serviceConnectModules PRIVATE
     ServiceSignatureCall.cpp
     ServiceVersionCall.cpp

@@ -1,7 +1,10 @@
 
 #include "userCall.hpp"
 
-#include <userTable.h>
+#include "user.hpp"
+
+#include <sqlpp11/sqlpp11.h>
+#include <sqlpp11/mysql/mysql.h>
 
 namespace delivery
 {
@@ -24,10 +27,18 @@ namespace delivery
             } else if (m_status == PROCESS) {
                 new UserCall(m_service, m_queue);
 
-                std::string username = m_request.username();
-                std::string password = m_request.password();
-                // check username and password in database
-                if (username == "gustavo" || password == "der555") {
+                namespace mysql = sqlpp::mysql;
+                auto config = std::make_shared<mysql::connection_config>();
+                config->user = "root";
+                config->password = "der555";
+                config->database = "delivery";
+                config->debug = true;
+                mysql::connection db(config);
+                User user(&db);
+
+                bool login = user.login(m_request.username(), m_request.password());
+                if (login) {
+                    // TODO: generate and register token in database
                     m_response.set_token("mytoken");
                     m_response.set_status(LoginResponse_Status_LOGGED);
                 } else {
