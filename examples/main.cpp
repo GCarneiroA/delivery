@@ -11,6 +11,9 @@
 #include <Version.grpc.pb.h>
 #include <Login.grpc.pb.h>
 
+#include "Poco/MD5Engine.h"
+#include "Poco/DigestStream.h"
+
 using namespace delivery;
 using namespace signature;
 using namespace version;
@@ -60,11 +63,16 @@ public:
         }
     }
 
-    std::string Login(std::string username, std::string password, LoginResponse_Status loginStatus)
+    std::string Login(const std::string &username, const std::string &password, LoginResponse_Status &loginStatus)
     {
         LoginRequest lRequest;
+
+        Poco::MD5Engine engine;
+        Poco::DigestOutputStream ds(engine);
+        ds << password;
+        ds.close();
         lRequest.set_username(username);
-        lRequest.set_password(password);
+        lRequest.set_password(Poco::DigestEngine::digestToHex(engine.digest()));
 
         LoginResponse lResponse;
         grpc::ClientContext context;

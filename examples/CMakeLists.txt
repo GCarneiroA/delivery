@@ -5,7 +5,7 @@ protobuf_generate_cpp(ProtobufSources ProtobufHeaders ${ProtoFiles})
 grpc_generate_cpp(ProtobufGRPCSources ProtobufGRPCHeaders ${ProtoFiles})
 
 add_executable(front-example main.cpp ${ProtobufSources} ${ProtobufGRPCSources})
-target_link_libraries(front-example gRPC::grpc++ gRPC::grpc++_reflection)
+target_link_libraries(front-example gRPC::grpc++ gRPC::grpc++_reflection ${CONAN_LIBS})
 
 target_include_directories(front-example PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}
