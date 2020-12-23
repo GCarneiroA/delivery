@@ -1,0 +1,14 @@
+
+<RCC>
+
+    <qresource prefix="/">
+        <file alias="deskOrdersMain.qml">qml/deskOrdersMain.qml</file>
+        <file>qmlPages/LoginPage.qml</file>
+        <file>qmlPages/MainPage.qml</file>
+    </qresource>
+
+    <qresource prefix="/images">
+        <file>images/loginBackground.jpg</file>
+    </qresource>
+
+</RCC>

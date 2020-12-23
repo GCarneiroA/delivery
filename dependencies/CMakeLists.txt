@@ -1,19 +1,8 @@
 
 include(FetchContent)
 
-option(USE_SYSTEM_GRPC "Use system installed gRPC" OFF)
-if (USE_SYSTEM_GRPC)
-    find_package(gRPC CONFIG REQUIRED)
-else()
-    FetchContent_Declare(gRPC
-        GIT_REPOSITORY  https://github.com/grpc/grpc
-        GIT_TAG         v1.33.2
-    )
-    add_subdirectory(gRPC)
-endif()
-
 FetchContent_Declare(mysqlpp
-    GIT_REPOSITORY  https://github.com/GCarneiroA/mysql-connector.git
-    GIT_TAG         origin/master
+    GIT_REPOSITORY  https://github.com/GCarneiroA/sqlpp11-connector-mysql.git
+    GIT_TAG         origin/dependencies
 )
 add_subdirectory(mysqlpp)
