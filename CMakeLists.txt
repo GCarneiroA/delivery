@@ -3,6 +3,7 @@
 cmake_minimum_required(VERSION 3.18)
 
 project(delivery VERSION 0.0.1)
+configure_file(deliveryVersion.h.in deliveryVersion.h)          # Version configuration file
 
 add_subdirectory(dependencies)
 
@@ -19,7 +20,7 @@ find_package(Protobuf REQUIRED)
 message(STATUS "Using protobuf ${Protobuf_VERSION}")
 
 find_package(gRPC CONFIG REQUIRED)
-message(STATUS "Using gRPC ${gRPC_Version}")
+message(STATUS "Using gRPC ${gRPC_VERSION}")
 
 add_subdirectory(services)
 

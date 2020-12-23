@@ -14,5 +14,5 @@ target_link_libraries(serviceConnectModules gRPC::grpc++ gRPC::grpc++_reflection
 
 target_include_directories(serviceConnectModules PUBLIC
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${PROJECT_BINARY_DIR}/cmake)
+    ${PROJECT_BINARY_DIR})
 

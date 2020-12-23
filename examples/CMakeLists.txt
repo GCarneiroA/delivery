@@ -9,4 +9,4 @@ target_link_libraries(front-example gRPC::grpc++ gRPC::grpc++_reflection)
 
 target_include_directories(front-example PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${PROJECT_BINARY_DIR}/cmake)
+    ${PROJECT_BINARY_DIR})

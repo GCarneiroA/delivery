@@ -15,5 +15,5 @@ target_link_libraries(deskCore grpc++ grpc++_reflection Qt5::Core)
 
 target_include_directories(deskCore
     PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
-            ${PROJECT_BINARY_DIR}/cmake
+            ${PROJECT_BINARY_DIR}
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
